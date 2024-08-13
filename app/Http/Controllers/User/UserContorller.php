@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class UserContorller extends Controller
 {
-    public function login( Request $request){
-
+    public function dashboard( Request $request){
+       return view('staff.dashboard');
     }
 
     public function register(Request $request){

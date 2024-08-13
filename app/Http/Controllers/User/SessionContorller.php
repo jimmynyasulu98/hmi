@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class MemberContorller extends Controller
+class SessionContorller extends Controller
 {
-    public function login( Request $request){
-        return view('member.login');
+    
+    public function login(){
+        return view('staff.session.login');
     }
 
     public function register(Request $request){
@@ -26,22 +27,19 @@ class MemberContorller extends Controller
             'email' => $request->email ,
             'password'  => $request->password
         ];
-        if(Auth::guard('member')->attempt($data)){
-            return redirect()->route('member_dashboard');
+        if(Auth::guard('web')->attempt($data)){
+            return redirect()->route('staff_dashboard');
         }
         else{
-            return redirect()->route('member_login')->with('error', 'The information provided is 
+            return redirect()->route('staff_login')->with('error', 'The information provided is 
             incorrect please try again');
         }
     }
 
-    public function dashboard(){
-        return view('member.dashboard');
-    }
-    
     public function logout(){
-        Auth::guard('member')->logout();
-        return redirect()->route('member_login')->with('error', 'The information provided is 
+        Auth::guard('web')->logout();
+        return redirect()->route('staff_login')->with('error', 'The information provided is 
             incorrect please try again');
     }
+
 }

@@ -1,25 +1,3 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-    
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
 
 <x-layout>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -42,7 +20,7 @@
                     {{session('error')}}
                 @endif
             </p>
-          <form class="space-y-6" action="{{route('member_authenticate')}}" method="post">
+          <form class="space-y-6" action="{{route('staff_authenticate')}}" method="post">
             @csrf
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
@@ -55,7 +33,7 @@
               <div class="flex items-center justify-between">
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div class="text-sm">
-                  <a href="{{route('member_forgot_password')}}" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                  <a href="{{route('staff_forgot_password')}}" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                 </div>
               </div>
               <div class="mt-2">
