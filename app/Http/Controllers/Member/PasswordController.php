@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\member;
 
-use App\Mail\ResetPasswordEmail;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Mail\ResetPasswordEmail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Helpers\Passwords\PasswordHelper;
 
-class PasswordContorller extends Controller
+class PasswordController extends Controller
 {
     public function forgot_password_view(){
         return view('member.password.forgot_password_view');
@@ -24,15 +25,7 @@ class PasswordContorller extends Controller
         if(!$member){
             return redirect()->back()->with('error', 'Email not found');
         }
-        $token = hash('sha256',time());
-        $member->remember_token = $token;
-        $member->update();
-        $reset_link = url('member/reset-password/'.$token.'/'.$request->email);
-        $subject = 'Reset Password';
-        $message = 'To reset password, please click on the link below:<br>';
-        $message .= "<a href='".$reset_link."'>Click here</a>";
-        
-        Mail::to($request->email)->send(new ResetPasswordEmail($subject, $message));
+        PasswordHelper::send_reset_password_mail($member, $request, 'member/reset-password');
         return redirect()->back()->with('suceess', 'We sent a password reset link to your email.
          Please check in the spam folder iof you do not find it');
 

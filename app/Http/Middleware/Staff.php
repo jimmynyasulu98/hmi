@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class User
+class Staff
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('web')->check()){
-            return redirect()->route('login');
+        if (!Auth::guard('staff')->check()){
+            return redirect()->route('staff_login');
         }
         return $next($request);
     }

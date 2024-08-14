@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Staff;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class SessionContorller extends Controller
+class SessionController extends Controller
 {
     
     public function login(){
@@ -22,12 +22,13 @@ class SessionContorller extends Controller
             'email'=> ['required', 'email'],
             'password'=>['required']
         ]);
-
+       
         $data = [
             'email' => $request->email ,
             'password'  => $request->password
         ];
-        if(Auth::guard('web')->attempt($data)){
+        if(Auth::guard('staff')->attempt($data)){
+           
             return redirect()->route('staff_dashboard');
         }
         else{
@@ -37,7 +38,7 @@ class SessionContorller extends Controller
     }
 
     public function logout(){
-        Auth::guard('web')->logout();
+        Auth::guard('staff')->logout();
         return redirect()->route('staff_login')->with('error', 'The information provided is 
             incorrect please try again');
     }

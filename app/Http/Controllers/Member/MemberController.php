@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MemberContorller extends Controller
+class MemberController extends Controller
 {
     public function login( Request $request){
         return view('member.login');
