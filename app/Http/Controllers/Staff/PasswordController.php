@@ -26,7 +26,7 @@ class PasswordController extends Controller
         if(!$staff){
             return redirect()->back()->with('error', 'Email not found');
         }
-        PasswordHelper::send_reset_password_mail($staff, $request, 'staff/reset-password');;
+        PasswordHelper::send_reset_password_mail($staff, $request, 'staff/reset-password');
         return redirect()->back()->with('suceess', 'We sent a password reset link to your email.
          Please check in the spam folder iof you do not find it');
 

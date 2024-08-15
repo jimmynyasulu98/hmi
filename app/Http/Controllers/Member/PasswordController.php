@@ -4,10 +4,8 @@ namespace App\Http\Controllers\member;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
-use App\Mail\ResetPasswordEmail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use App\Helpers\Passwords\PasswordHelper;
 
 class PasswordController extends Controller

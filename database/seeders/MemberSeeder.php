@@ -16,13 +16,15 @@ class MemberSeeder extends Seeder
      */
     public function run(): void
     {
-        $member = new Member;
+        /* $member = new Member;
         $member->first_name = "member1";
         $member->last_name = "member1";
         $member->email = "member1@gmail.com";
         $member->password = Hash::make('1234');
         $member->remember_token = "";
-        $member->save();
+        $member->save(); */
+
+        Member::factory(200)->create();
 
     }
 }
