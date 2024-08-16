@@ -14,12 +14,14 @@ class StaffSeeder extends Seeder
      */
     public function run(): void
     {
-        $staff = new Staff;
+        /* $staff = new Staff;
         $staff->first_name = "staff1";
         $staff->last_name = "staff1";
         $staff->email = "staff1@gmail.com";
         $staff->password = Hash::make('1234');
         $staff->remember_token = "";
-        $staff->save();
+        $staff->save(); */
+
+        Staff::factory(20)->create();
     }
 }
