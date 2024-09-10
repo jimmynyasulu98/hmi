@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use function Laravel\Prompts\search;
+
 class Member extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -50,6 +52,46 @@ class Member extends Authenticatable
         ];
     }
 
+    public function scopeFilter($query, $search){
+ 
+        if($search->membership_number && $search->first_name && $search->surname){
+         
+            $query->where('last_name','like','%'.$search->surname.'%' )
+                ->orWhere('first_name','like','%'.$search->first_name.'%')
+            #->orWhere('membership_number','like','%'.$search->membership_number.'%')
+            ;
+        }
+        elseif($search->first_name && $search->surname ?? false ){
+            $query->where('first_name','like','%'.$search->first_name.'%')
+            ->orWhere('last_name','like','%'.$search->surname.'%')
+            ;
+        }
+        elseif($search->surname && $search->membership_number ?? false ){
+            $query->where('last_name','like','%'.$search->surname.'%',
+            )
+            #->orWhere('membership_number','like','%'.$search->surname.'%')
+            ;
+        }
+        elseif($search->first_name && $search->membership_number ?? false ){
+            $query->where('first_name','like','%'.$search->first_name.'%',
+            )
+             #->orWhere('membership_number','like','%'.$search->surname.'%')
+            ;
+        }
+        elseif($search->first_name ?? false ){
+            $query->where('first_name','like','%'.$search->first_name.'%'
+            );
+        }
+        elseif($search->surname ?? false ){
+            $query->where('last_name','like','%'.$search->surname.'%',
+            );
+        }
+        elseif($search->membership_number ?? false ){
+            $query->where('last_name','like','%'.$search->membership_number.'%',
+            );
+        }
+
+    }
     public function member():BelongsToMany
     {
         return $this->belongsToMany(Member::class, 'user_follower', 'following_id', 'follower_id');
