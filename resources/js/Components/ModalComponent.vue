@@ -3,9 +3,8 @@ import { defineProps, defineEmits, ref, reactive } from "vue";
 import {onClickOutside} from '@vueuse/core'
 import { router } from '@inertiajs/vue3'
 
-const props = defineProps({
-  isOpen: Boolean,
-});
+
+defineProps({ members: Object });
 const form = reactive({
         membership_number: '',
         first_name: '',

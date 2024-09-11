@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\Member::class);
             $table->foreignIdFor(\App\Models\ServiceProvider::class);
-            $table->float('total');
-            $table->boolean('submitted');
-            $table->boolean('approved');
+            $table->float('total')->default(0.00);
+            $table->integer('stage')->default(0);
+            $table->boolean('submitted')->default(false);
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

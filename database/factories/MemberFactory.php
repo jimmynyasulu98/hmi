@@ -19,8 +19,12 @@ class MemberFactory extends Factory
      */
     protected static ?string $password;
     public function definition(): array
-    {
+    {   
+        $university_id = rand(1,6);
+        $serial_number = rand(10101,50120);
+        $member_id = rand(1,6);
         return [
+            'membership_number' => "{$university_id}-0118-{$serial_number}-{$member_id}",
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),

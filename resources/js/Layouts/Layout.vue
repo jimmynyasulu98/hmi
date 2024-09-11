@@ -14,11 +14,15 @@
                 Dashboard
             </Link>
 
-           
+            <Link :href="route('service_provider_claims')" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-sticky-note mr-3"></i>
+                Claims
+            </Link>
             <Link :href="route('new_claim')" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
                 New Claim
             </Link>
+            
             <button @click="openModal" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 New Claim
             </button>

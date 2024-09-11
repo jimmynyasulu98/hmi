@@ -6,8 +6,8 @@
     defineOptions({layout: Layout});
     defineProps({ members: Object });
 
-    function createClaimForm (id) { 
-        router.get('/member/'+id.toString()+'/claim/new');
+    function createClaimForm (member_id) { 
+        router.post('/member/'+member_id.toString()+'/claim/new', member_id);
     }
 
 </script>
